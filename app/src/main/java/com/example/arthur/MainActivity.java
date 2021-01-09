@@ -1,17 +1,17 @@
-package com.example.connect4_arthur;
+package com.example.arthur;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -23,10 +23,24 @@ public class MainActivity extends AppCompatActivity {
         if (first == 1) {
             arthur();
         }
+
     }
 
     int board[][] = new int[6][7];
     int turn = 0;
+
+    public void resetBoard(View view){
+        TextView text = (TextView) findViewById(R.id.textView2);
+        text.setText("");
+        for(int i =0; i < board.length; i++){
+            hide_button(i, true);
+            for(int j=0; j < board[i].length; j++){
+                board[i][j] = 0;
+                display(-1, i,j);
+            }
+        }
+        hide_button(6, true);
+    }
 
     private boolean is_valid(int col, int[][]board) {
         return board[5][col] == 0;
@@ -49,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 winner(board);
                 if (check) display(1, row, col);
                 if (!is_valid(col, cboard) && check) {
-                    hide_button(col);
+                    hide_button(col, false);
                 }
                 return;
             } else { //yellow piece
@@ -57,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 winner(board);
                 if (check) display(0, row, col);
                 if (!is_valid(col, cboard) && check) {
-                    hide_button(col);
+                    hide_button(col,false);
                 }
                 return;
             }
@@ -71,59 +85,50 @@ public class MainActivity extends AppCompatActivity {
                 switch (col) {
                     case 0:
                         Button b00 = (Button) findViewById(R.id.b00);
-                        if (user == 0) {
-                            b00.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b00.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b00.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b00.setBackgroundResource(R.drawable.empty_btn);
+                        else b00.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 1:
                         Button b01 = (Button) findViewById(R.id.b01);
-                        if (user == 0) {
-                            b01.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b01.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b01.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b01.setBackgroundResource(R.drawable.empty_btn);
+                        else b01.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 2:
                         Button b02 = (Button) findViewById(R.id.b02);
-                        if (user == 0) {
-                            b02.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b02.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b02.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b02.setBackgroundResource(R.drawable.empty_btn);
+                        else b02.setBackgroundResource(R.drawable.red_btn);
+
                         break;
                     case 3:
                         Button b03 = (Button) findViewById(R.id.b03);
-                        if (user == 0) {
-                            b03.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b03.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b03.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b03.setBackgroundResource(R.drawable.empty_btn);
+                        else b03.setBackgroundResource(R.drawable.red_btn);
+
                         break;
                     case 4:
                         Button b04 = (Button) findViewById(R.id.b04);
-                        if (user == 0) {
-                            b04.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b04.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b04.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b04.setBackgroundResource(R.drawable.empty_btn);
+                        else b04.setBackgroundResource(R.drawable.red_btn);
+
                         break;
                     case 5:
                         Button b05 = (Button) findViewById(R.id.b05);
-                        if (user == 0) {
-                            b05.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b05.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b05.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b05.setBackgroundResource(R.drawable.empty_btn);
+                        else b05.setBackgroundResource(R.drawable.red_btn);
+
                         break;
                     case 6:
                         Button b06 = (Button) findViewById(R.id.b06);
-                        if (user == 0) {
-                            b06.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b06.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b06.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b06.setBackgroundResource(R.drawable.empty_btn);
+                        else b06.setBackgroundResource(R.drawable.red_btn);
+
                         break;
                 }
                 break;
@@ -131,59 +136,45 @@ public class MainActivity extends AppCompatActivity {
                 switch (col) {
                     case 0:
                         Button b10 = (Button) findViewById(R.id.b10);
-                        if (user == 0) {
-                            b10.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b10.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b10.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b10.setBackgroundResource(R.drawable.empty_btn);
+                        else b10.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 1:
                         Button b11 = (Button) findViewById(R.id.b11);
-                        if (user == 0) {
-                            b11.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b11.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b11.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b11.setBackgroundResource(R.drawable.empty_btn);
+                        else b11.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 2:
                         Button b12 = (Button) findViewById(R.id.b12);
-                        if (user == 0) {
-                            b12.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b12.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b12.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b12.setBackgroundResource(R.drawable.empty_btn);
+                        else b12.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 3:
                         Button b13 = (Button) findViewById(R.id.b13);
-                        if (user == 0) {
-                            b13.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b13.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b13.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b13.setBackgroundResource(R.drawable.empty_btn);
+                        else b13.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 4:
                         Button b14 = (Button) findViewById(R.id.b14);
-                        if (user == 0) {
-                            b14.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b14.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b14.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b14.setBackgroundResource(R.drawable.empty_btn);
+                        else b14.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 5:
                         Button b15 = (Button) findViewById(R.id.b15);
-                        if (user == 0) {
-                            b15.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b15.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b15.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b15.setBackgroundResource(R.drawable.empty_btn);
+                        else b15.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 6:
                         Button b16 = (Button) findViewById(R.id.b16);
-                        if (user == 0) {
-                            b16.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b16.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b16.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b16.setBackgroundResource(R.drawable.empty_btn);
+                        else b16.setBackgroundResource(R.drawable.red_btn);
                         break;
                 }
                 break;
@@ -191,59 +182,45 @@ public class MainActivity extends AppCompatActivity {
                 switch (col) {
                     case 0:
                         Button b20 = (Button) findViewById(R.id.b20);
-                        if (user == 0) {
-                            b20.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b20.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b20.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b20.setBackgroundResource(R.drawable.empty_btn);
+                        else b20.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 1:
                         Button b21 = (Button) findViewById(R.id.b21);
-                        if (user == 0) {
-                            b21.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b21.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b21.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b21.setBackgroundResource(R.drawable.empty_btn);
+                        else b21.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 2:
                         Button b22 = (Button) findViewById(R.id.b22);
-                        if (user == 0) {
-                            b22.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b22.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b22.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b22.setBackgroundResource(R.drawable.empty_btn);
+                        else b22.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 3:
                         Button b23 = (Button) findViewById(R.id.b23);
-                        if (user == 0) {
-                            b23.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b23.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b23.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b23.setBackgroundResource(R.drawable.empty_btn);
+                        else b23.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 4:
                         Button b24 = (Button) findViewById(R.id.b24);
-                        if (user == 0) {
-                            b24.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b24.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b24.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b24.setBackgroundResource(R.drawable.empty_btn);
+                        else b24.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 5:
                         Button b25 = (Button) findViewById(R.id.b25);
-                        if (user == 0) {
-                            b25.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b25.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b25.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b25.setBackgroundResource(R.drawable.empty_btn);
+                        else b25.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 6:
                         Button b26 = (Button) findViewById(R.id.b26);
-                        if (user == 0) {
-                            b26.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b26.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b26.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b26.setBackgroundResource(R.drawable.empty_btn);
+                        else b26.setBackgroundResource(R.drawable.red_btn);
                         break;
                 }
                 break;
@@ -251,59 +228,45 @@ public class MainActivity extends AppCompatActivity {
                 switch (col) {
                     case 0:
                         Button b30 = (Button) findViewById(R.id.b30);
-                        if (user == 0) {
-                            b30.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b30.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b30.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b30.setBackgroundResource(R.drawable.empty_btn);
+                        else b30.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 1:
                         Button b31 = (Button) findViewById(R.id.b31);
-                        if (user == 0) {
-                            b31.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b31.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b31.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b31.setBackgroundResource(R.drawable.empty_btn);
+                        else b31.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 2:
                         Button b32 = (Button) findViewById(R.id.b32);
-                        if (user == 0) {
-                            b32.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b32.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b32.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b32.setBackgroundResource(R.drawable.empty_btn);
+                        else b32.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 3:
                         Button b33 = (Button) findViewById(R.id.b33);
-                        if (user == 0) {
-                            b33.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b33.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b33.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b33.setBackgroundResource(R.drawable.empty_btn);
+                        else b33.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 4:
                         Button b34 = (Button) findViewById(R.id.b34);
-                        if (user == 0) {
-                            b34.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b34.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b34.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b34.setBackgroundResource(R.drawable.empty_btn);
+                        else b34.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 5:
                         Button b35 = (Button) findViewById(R.id.b35);
-                        if (user == 0) {
-                            b35.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b35.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b35.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b35.setBackgroundResource(R.drawable.empty_btn);
+                        else b35.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 6:
                         Button b36 = (Button) findViewById(R.id.b36);
-                        if (user == 0) {
-                            b36.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b36.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b36.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b36.setBackgroundResource(R.drawable.empty_btn);
+                        else b36.setBackgroundResource(R.drawable.red_btn);
                         break;
                 }
                 break;
@@ -311,59 +274,45 @@ public class MainActivity extends AppCompatActivity {
                 switch (col) {
                     case 0:
                         Button b40 = (Button) findViewById(R.id.b40);
-                        if (user == 0) {
-                            b40.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b40.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b40.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b40.setBackgroundResource(R.drawable.empty_btn);
+                        else b40.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 1:
                         Button b41 = (Button) findViewById(R.id.b41);
-                        if (user == 0) {
-                            b41.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b41.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b41.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b41.setBackgroundResource(R.drawable.empty_btn);
+                        else b41.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 2:
                         Button b42 = (Button) findViewById(R.id.b42);
-                        if (user == 0) {
-                            b42.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b42.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b42.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b42.setBackgroundResource(R.drawable.empty_btn);
+                        else b42.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 3:
                         Button b43 = (Button) findViewById(R.id.b43);
-                        if (user == 0) {
-                            b43.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b43.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b43.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b43.setBackgroundResource(R.drawable.empty_btn);
+                        else b43.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 4:
                         Button b44 = (Button) findViewById(R.id.b44);
-                        if (user == 0) {
-                            b44.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b44.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b44.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b44.setBackgroundResource(R.drawable.empty_btn);
+                        else b44.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 5:
                         Button b45 = (Button) findViewById(R.id.b45);
-                        if (user == 0) {
-                            b45.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b45.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b45.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b45.setBackgroundResource(R.drawable.empty_btn);
+                        else b45.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 6:
                         Button b46 = (Button) findViewById(R.id.b46);
-                        if (user == 0) {
-                            b46.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b46.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b46.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b46.setBackgroundResource(R.drawable.empty_btn);
+                        else b46.setBackgroundResource(R.drawable.red_btn);
                         break;
                 }
                 break;
@@ -371,59 +320,45 @@ public class MainActivity extends AppCompatActivity {
                 switch (col) {
                     case 0:
                         Button b50 = (Button) findViewById(R.id.b50);
-                        if (user == 0) {
-                            b50.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b50.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b50.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b50.setBackgroundResource(R.drawable.empty_btn);
+                        else b50.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 1:
                         Button b51 = (Button) findViewById(R.id.b51);
-                        if (user == 0) {
-                            b51.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b51.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b51.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b51.setBackgroundResource(R.drawable.empty_btn);
+                        else b51.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 2:
                         Button b52 = (Button) findViewById(R.id.b52);
-                        if (user == 0) {
-                            b52.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b52.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b52.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b52.setBackgroundResource(R.drawable.empty_btn);
+                        else b52.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 3:
                         Button b53 = (Button) findViewById(R.id.b53);
-                        if (user == 0) {
-                            b53.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b53.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b53.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b53.setBackgroundResource(R.drawable.empty_btn);
+                        else b53.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 4:
                         Button b54 = (Button) findViewById(R.id.b54);
-                        if (user == 0) {
-                            b54.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b54.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b54.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b54.setBackgroundResource(R.drawable.empty_btn);
+                        else b54.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 5:
                         Button b55 = (Button) findViewById(R.id.b55);
-                        if (user == 0) {
-                            b55.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b55.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b55.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b55.setBackgroundResource(R.drawable.empty_btn);
+                        else b55.setBackgroundResource(R.drawable.red_btn);
                         break;
                     case 6:
                         Button b56 = (Button) findViewById(R.id.b56);
-                        if (user == 0) {
-                            b56.setBackgroundResource(R.drawable.yellow_btn);
-                        } else {
-                            b56.setBackgroundResource(R.drawable.red_btn);
-                        }
+                        if (user == 0) b56.setBackgroundResource(R.drawable.yellow_btn);
+                        else if(user == -1) b56.setBackgroundResource(R.drawable.empty_btn);
+                        else b56.setBackgroundResource(R.drawable.red_btn);
                         break;
                 }
                 break;
@@ -498,13 +433,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clear_board(){
-        hide_button(0);
-        hide_button(1);
-        hide_button(2);
-        hide_button(3);
-        hide_button(4);
-        hide_button(5);
-        hide_button(6);
+        hide_button(0, false);
+        hide_button(1, false);
+        hide_button(2, false);
+        hide_button(3, false);
+        hide_button(4, false);
+        hide_button(5, false);
+        hide_button(6, false);
     }
 
     private boolean empty_board() {
@@ -790,35 +725,42 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void hide_button(int col) {
+    private void hide_button(int col, boolean isVisible) {
         switch (col) {
             case 0:
                 Button row0 = (Button) findViewById(R.id.row0);
-                row0.setVisibility(View.INVISIBLE);
+                if(isVisible)row0.setVisibility(View.VISIBLE);
+                else row0.setVisibility(View.INVISIBLE);
                 break;
-                case 1:
+            case 1:
                 Button row1 = (Button) findViewById(R.id.row1);
-                row1.setVisibility(View.INVISIBLE);
+                if(isVisible)row1.setVisibility(View.VISIBLE);
+                else row1.setVisibility(View.INVISIBLE);
                 break;
-                case 2:
+            case 2:
                 Button row2 = (Button) findViewById(R.id.row2);
-                row2.setVisibility(View.INVISIBLE);
+                if(isVisible)row2.setVisibility(View.VISIBLE);
+                else row2.setVisibility(View.INVISIBLE);
                 break;
-                case 3:
+            case 3:
                 Button row3 = (Button) findViewById(R.id.row3);
-                row3.setVisibility(View.INVISIBLE);
+                if(isVisible)row3.setVisibility(View.VISIBLE);
+                else row3.setVisibility(View.INVISIBLE);
                 break;
-                case 4:
+            case 4:
                 Button row4 = (Button) findViewById(R.id.row4);
-                row4.setVisibility(View.INVISIBLE);
+                if(isVisible)row4.setVisibility(View.VISIBLE);
+                else row4.setVisibility(View.INVISIBLE);
                 break;
-                case 5:
+            case 5:
                 Button row5 = (Button) findViewById(R.id.row5);
-                row5.setVisibility(View.INVISIBLE);
+                if(isVisible)row5.setVisibility(View.VISIBLE);
+                else row5.setVisibility(View.INVISIBLE);
                 break;
-                case 6:
+            case 6:
                 Button row6 = (Button) findViewById(R.id.row6);
-                row6.setVisibility(View.INVISIBLE);
+                if(isVisible)row6.setVisibility(View.VISIBLE);
+                else row6.setVisibility(View.INVISIBLE);
                 break;
         }
     }

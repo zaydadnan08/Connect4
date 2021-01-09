@@ -1,4 +1,4 @@
-package com.example.connect4_arthur;
+package com.example.arthur;
 
 import org.junit.Test;
 

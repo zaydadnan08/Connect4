@@ -1,4 +1,4 @@
-package com.example.connect4_arthur;
+package com.example.arthur;
 
 import android.content.Context;
 
@@ -21,7 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-
-        assertEquals("com.example.connect4_arthur", appContext.getPackageName());
+        assertEquals("com.example.arthur", appContext.getPackageName());
     }
 }
